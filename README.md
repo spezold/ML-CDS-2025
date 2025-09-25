@@ -2,7 +2,11 @@
 
 Code repository for the paper **Leveraging generic foundation models for multimodal surgical data analysis** by Simon Pezold, Jérôme A. Kurylec, Jan S. Liechti, Beat P. Müller, and Joël L. Lavanchy
 
-Code, model weights, and instructions to be released shortly.
+## TODOs
+- [x] Provide code
+- [ ] Provide weights
+- [ ] Provide installation instructions
+- [ ] Provide usage instructions
 
 If you find our work useful, please consider citing:
 ```bibtex
