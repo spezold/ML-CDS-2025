@@ -88,10 +88,10 @@ workflow:
 
   checkpointing:
     continue_from_latest: true  # Continue from latest checkpoint (true) or start over (false)
-    file: ~/Heico-experiment/log/heico-video-pretrained_vjepa-train/latest.pth.tar
+    file: ~/HeiCo-experiment/log/heico-video-pretrained_vjepa-train/latest.pth.tar
 
   logging:
-    dir: ~/Heico-experiment/log/heico-video-pretrained_vjepa-train  # A fusion of `folder` and `type`
+    dir: ~/HeiCo-experiment/log/heico-video-pretrained_vjepa-train  # A fusion of `folder` and `type`
     prefix: own  # `tag`
     show_every_iter: 20
 

@@ -63,7 +63,7 @@ model:
       architecture:
         model_name: vit_large
       pretrain:
-        checkpoint_file: ~/Heico-experiment/log/heico-video-pretrained_vjepa-train/latest.pth.tar
+        checkpoint_file: ~/HeiCo-experiment/log/heico-video-pretrained_vjepa-train/latest.pth.tar
         checkpoint_key: decoders.classifier
 
 workflow:
@@ -75,10 +75,10 @@ workflow:
 
   checkpointing:
     continue_from_latest: false  # Continue from latest checkpoint (true) or start over (false)
-    file: ~/Heico-experiment/log/heico-video-pretrained_vjepa-eval/latest.pth.tar
+    file: ~/HeiCo-experiment/log/heico-video-pretrained_vjepa-eval/latest.pth.tar
 
   logging:
-    dir: ~/Heico-experiment/log/heico-video-pretrained_vjepa-eval  # A fusion of `folder` and `type`
+    dir: ~/HeiCo-experiment/log/heico-video-pretrained_vjepa-eval  # A fusion of `folder` and `type`
     prefix: own  # `tag`
     show_every_iter: 20
 

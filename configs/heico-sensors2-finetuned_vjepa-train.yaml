@@ -80,7 +80,7 @@ model:
         mlp_ratio: 4
         dropout_rate: 0.2
       pretrain:
-        checkpoint_file: ~/Heico-experiment/log/heico-sensors1-finetuned_vjepa-train/latest.pth.tar
+        checkpoint_file: ~/HeiCo-experiment/log/heico-sensors1-finetuned_vjepa-train/latest.pth.tar
         checkpoint_key: encoders.sensors
       phase_train:
         state: frozen
@@ -89,7 +89,7 @@ model:
       architecture:
         model_name: vit_large
       pretrain:
-        checkpoint_file: ~/Heico-experiment/log/heico-video-finetuned_vjepa-train/latest.pth.tar
+        checkpoint_file: ~/HeiCo-experiment/log/heico-video-finetuned_vjepa-train/latest.pth.tar
         checkpoint_key: decoders.classifier
       phase_train:
         state: hot
@@ -103,10 +103,10 @@ workflow:
 
   checkpointing:
     continue_from_latest: true  # Continue from latest checkpoint (true) or start over (false)
-    file: ~/Heico-experiment/log/heico-sensors2-finetuned_vjepa-train/latest.pth.tar
+    file: ~/HeiCo-experiment/log/heico-sensors2-finetuned_vjepa-train/latest.pth.tar
 
   logging:
-    dir: ~/Heico-experiment/log/heico-sensors2-finetuned_vjepa-train  # A fusion of `folder` and `type`
+    dir: ~/HeiCo-experiment/log/heico-sensors2-finetuned_vjepa-train  # A fusion of `folder` and `type`
     prefix: own  # `tag`
     show_every_iter: 20
 
