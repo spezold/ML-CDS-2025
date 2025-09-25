@@ -1,0 +1,9 @@
+# Following https://github.com/pypa/sampleproject/blob/main/pyproject.toml and
+# https://packaging.python.org/en/latest/guides/single-sourcing-package-version/#single-sourcing-the-version
+
+[project]
+name = "multimods3"
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = {attr = "multimods3.__version__"}

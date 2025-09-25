@@ -1,0 +1,130 @@
+script: full_run
+
+# Phase concept: (1) Attributes in "phase_*" are used for the corresponding phase only, others are used in all phases.
+# Attributes in "common" are explicitly injected into "phase_*" (see e.g.
+# https://tutorialreference.com/yaml/yaml-anchors-and-alias for the technical basis). (2) Places where injection is used
+# usually imply the creation of different instances for each phase (e.g. datasets), while places where "phase_*" is used
+# without injection usually imply the creation of one instance that is treated differently in different phases (e.g.
+# encoders/decoders).
+phases: [phase_train, phase_val]
+
+data:
+  location:
+    common: &location_common
+      metadata_file: ~/HeiCo-experiment/video-metadata.json
+      split_file: ~/HeiCo-experiment/endovis-2017-split.json
+      base_dir: ~/HeiCo-experiment/  # May be null (→ absolute paths in metadata/split)
+      label: null  # May be null (only use for one-label-per-folder data)
+    phase_train:
+      <<: *location_common
+      split_name: training+validation
+    phase_val:
+      <<: *location_common
+      split_name: testing
+  sampling:
+    common: &sampling_common
+      skip_classes: []
+    phase_train:
+      <<: *sampling_common
+      number: {type: absolute, value: 1000}  # null or type-value pair with "type" either "relative" or "absolute"
+      weight_by_class: true
+    phase_val:
+      <<: *sampling_common
+      number: {type: absolute, value: 100}  # null or type-value pair with "type" either "relative" or "absolute"
+      weight_by_class: true
+  features:  # These should have name matches in `model.encoders`
+    video:
+      common: &video_common
+        num_segments: 8
+        frame_step: 4
+        relative_frame_indices: true
+        channel_stats: {mean: [90.77, 51.77, 55.93], std: [75.93, 50.11, 55.12]}
+      phase_train:
+        <<: *video_common
+        stride: "sliding"  # "sliding" or "patched" or int
+        num_views_per_segment: 1
+      phase_val:
+        <<: *video_common
+        stride: 25  # "sliding" or "patched" or int
+        num_views_per_segment: 3
+    sensors:
+      channel_stats:
+        mean: [12.085, 211.34, 30.452, 15.319, 1189, 626.16, 0.10809, 0.092471, 87.408, 93.82, 42.929, -0.017607, 850.1, 481.85]
+        std: [27.361, 69.497, 60.266, 1.6026, 1257.6, 89.455, 0.32192, 0.34516, 28.9, 22.593, 44.046, 0.13152, 1127.3, 322.23]
+  targets:  # These should have name matches in `model.decoders`
+    classifier:
+      num_classes: 14
+
+# Model state concept: In the phase marked for optimization, an encoder or decoder component state can be "hot" (allows
+# gradient flow, gets updated), "fluid" (allows gradient flow, does not get updated), or "frozen" (does not allow
+# gradient flow, does not get updated). In the remaining phase(s), the component's state is frozen implicitly.
+model:
+  encoders:  # These should have name matches in `data.features`
+    video:
+      architecture:
+        model_name: vit_large
+        frames_per_clip: 16
+        patch_size: 16
+        resolution: 224
+        tubelet_size: 2
+        uniform_power: true
+      pretrain:  # Checkpoint to be loaded at startup (may be null)
+        checkpoint_file: ~/HeiCo-experiment/V-JEPA/vitl16.pth.tar
+        checkpoint_key: target_encoder
+      phase_train:
+        state: frozen
+    sensors:
+      architecture: # Educated guess
+        depth: 4
+        num_heads: 4
+        mlp_ratio: 4
+        dropout_rate: 0.2
+      pretrain: null
+      phase_train:
+        state: hot
+  decoders:  # These should have name matches in `data.targets`
+    classifier:
+      architecture:
+        model_name: vit_large
+      pretrain:
+        checkpoint_file: ~/Heico-experiment/log/heico-video-pretrained_vjepa-train/latest.pth.tar
+        checkpoint_key: decoders.classifier
+      phase_train:
+        state: fluid
+
+workflow:
+
+  optimize_in_phase: phase_train  # May be null
+  num_epochs: 10
+  use_bfloat16: true
+  compile_mode: null
+
+  checkpointing:
+    continue_from_latest: true  # Continue from latest checkpoint (true) or start over (false)
+    file: ~/Heico-experiment/log/heico-sensors1-pretrained_vjepa-train/latest.pth.tar
+
+  logging:
+    dir: ~/Heico-experiment/log/heico-sensors1-pretrained_vjepa-train  # A fusion of `folder` and `type`
+    prefix: own  # `tag`
+    show_every_iter: 20
+
+  phases:
+    common: &phases_common
+      batch_size: 4
+      num_workers: 16
+      prefetch_factor: 1
+    phase_train:
+      <<: *phases_common
+      state_change_weight: 0.001
+      learning_rate:
+        final: 0.0
+        reference: 0.0001
+        start: 1.e-6
+      schedule_scale: 1.25  # V-JEPA: ipe_scale
+      optimizer: AdamW
+      warmup: 1
+      weight_decay:
+        reference: 0.0001
+        final: 0.0001
+    phase_val:
+      <<: *phases_common

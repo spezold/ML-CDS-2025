@@ -1,0 +1,38 @@
+{
+  "training": [
+    "Proctocolectomy/1",
+    "Proctocolectomy/2",
+    "Proctocolectomy/3",
+    "Proctocolectomy/4",
+    "Proctocolectomy/5",
+    "Rectal resection/1",
+    "Rectal resection/2",
+    "Rectal resection/3",
+    "Rectal resection/4",
+    "Rectal resection/5",
+    "Sigmoid/1",
+    "Sigmoid/2",
+    "Sigmoid/3",
+    "Sigmoid/4",
+    "Sigmoid/5"
+  ],
+  "validation": [
+    "Proctocolectomy/6",
+    "Proctocolectomy/7",
+    "Proctocolectomy/8",
+    "Rectal resection/6",
+    "Rectal resection/7",
+    "Rectal resection/8",
+    "Sigmoid/6",
+    "Sigmoid/7",
+    "Sigmoid/8"
+  ],
+  "testing": [
+    "Proctocolectomy/10",
+    "Proctocolectomy/9",
+    "Rectal resection/10",
+    "Rectal resection/9",
+    "Sigmoid/10",
+    "Sigmoid/9"
+  ]
+}
