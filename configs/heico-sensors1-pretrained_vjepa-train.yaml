@@ -97,7 +97,7 @@ workflow:
   optimize_in_phase: phase_train  # May be null
   num_epochs: 10
   use_bfloat16: true
-  compile_mode: null
+  compile_mode: null  # FIXME: `compile_mode != null` currently has naming issues in checkpoint files. Don't change.
 
   checkpointing:
     continue_from_latest: true  # Continue from latest checkpoint (true) or start over (false)
