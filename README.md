@@ -8,6 +8,11 @@ Code repository for the paper **Leveraging generic foundation models for multimo
 - [ ] Provide installation instructions
 - [ ] Provide usage instructions
 
+## Distribution and licensing
+As we utilize some verbatim code from the [V-JEPA project](https://github.com/facebookresearch/jepa/), we distribute our
+code under the same license: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please
+refer to the [license file](./LICENSE.txt).
+
 If you find our work useful, please consider citing:
 ```bibtex
 @article{pezold2025leveraging,
