@@ -10,7 +10,29 @@ license = { file = "LICENSE.txt" }
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Scientific/Engineering :: Medical Science Apps."
 ]
+dependencies = [
+    "av",
+    "numpy",
+    "opencv-python-headless",
+    "pandas",
+    "pillow",
+    "PyYAML",
+    "scikit-image",
+    "torch>=2.6",
+    "torchcodec>=0.3",
+    "torchvision",
+    "tqdm"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/DigitalSurgeryLab-Basel/ML-CDS-2025"
+"Bug Reports" = "https://github.com/DigitalSurgeryLab-Basel/ML-CDS-2025/issues"
+"Source" = "https://github.com/DigitalSurgeryLab-Basel/ML-CDS-2025/"
 
 [tool.setuptools.dynamic]
 version = {attr = "multimods3.__version__"}
