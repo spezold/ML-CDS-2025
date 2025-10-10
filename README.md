@@ -10,21 +10,25 @@ which inspired our work.
 
 ## Installation
 
-Download the project code, `cd` into the project directory, then install with `pip install -e ./` or with the
-corresponding command of your favorite dependency manager.
+Install with `pip` or your favorite dependency manager:
+- Download the project code;
+- `cd` into the project directory;
+- install the project code with `pip install -e ./` or the dependency manager's corresponding command.
 
-Installation via `conda` and its derivatives should likewise be possible: Create a new environment and manually install
-`conda` packages corresponding to the `pip` packages listed in [`pyproject.toml`](./pyproject.toml)'s `dependencies`
-entry (you might want to enable the `conda-forge` channel for this). Then download, enter, and install the project code
-on top, using `pip install -e ./` (you might want to ensure via an initial `--dry-run` of `pip` that all dependencies
-have indeed been installed by `conda`).
+Installation via `conda` and its derivatives should likewise be possible:
+- Create a new environment (we recommend using Python 3.11 or 3.12) and activate it;
+- manually install `conda` packages corresponding to the `pip` packages listed in [`pyproject.toml`](./pyproject.toml)'s
+  `dependencies` entry (you might want to enable the `conda-forge` channel for this);
+- download the project code;
+- `cd` into the project directory;
+- ensure via `pip install --dry-run -e ./` that all dependencies have indeed been installed by `conda`;
+- install the project code with `pip install -e ./`.
 
 ## Data provision
 
-The HeiCo data can be downloaded from their corresponding
-[Synapse repository](https://doi.org/10.7303/syn21903917). Keeping the downloaded folder structure, the
-resulting download directory can then be used as the `base_dir` in a config file for a training or evaluation run (see
-below).
+The HeiCo data can be downloaded from the dataset's [Synapse repository](https://doi.org/10.7303/syn21903917).
+Keeping the downloaded folder structure, the resulting download directory can then be used as the `base_dir` in a config
+file for a training or evaluation run (see below).
 
 Additionally, a `split_file` (defining the split partitions) and a `metadata_file` (defining labels and out-of-body
 frames) need to be given, which are provided as [`endovis-2017-split.json`](resources/HeiCo/endovis-2017-split.json) and
@@ -32,8 +36,8 @@ frames) need to be given, which are provided as [`endovis-2017-split.json`](reso
 
 ## Model weights
 
-The weights of *finetuned V-JEPA* and a link to the weights of *pretrained V-JEPA* can be found in our
-[model repository](https://huggingface.co/DigitalSurgeryLab-Basel/ML-CDS-2025).
+The weights of *finetuned V-JEPA* and a link to the weights of *pretrained V-JEPA*, as defined in our paper, can be
+found in our [model repository](https://huggingface.co/DigitalSurgeryLab-Basel/ML-CDS-2025).
 
 ## Usage
 
@@ -68,17 +72,17 @@ The naming scheme of the provided config files adheres to the following conventi
 The interdependence of steps and scripts implies the following launch order:
 
 - … for training:
-  1. `heico-video-*_vjepa-train.yaml`
-  2. `heico-sensors1-*_vjepa-train.yaml`
-  3. `heico-sensors2-*_vjepa-train.yaml`
+  1. Run `heico-video-*_vjepa-train.yaml`;
+  2. run `heico-sensors1-*_vjepa-train.yaml`;
+  3. run `heico-sensors2-*_vjepa-train.yaml`.
 - … for evaluation: An evaluation script (`*-eval.yaml`) can be launched once the training script with the
   corresponding name (`*-train.yaml`) has been run successfully.
-- … for pretrained vs. finetuned V-JEPA: both series of experiments (`*pretrained*` vs `*finetuned*`) can be run
-  independently.
+- … for pretrained vs. finetuned V-JEPA: both series of experiments (`*-pretrained_vjepa-*` vs. `*-finetuned_vjepa-*`)
+  can be run independently.
 
-### Creating own experiments
+### Creating new experiments
 
-For creating own experiments, a corresponding config file, the name of which can be chosen freely, must be created in
+For creating new experiments, a corresponding config file, the name of which can be chosen freely, must be created in
 the `configs` folder. For the parameters and structure, see the parameters and comments in the existing ones.
 
 ## Distribution and licensing
