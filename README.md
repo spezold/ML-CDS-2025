@@ -46,8 +46,9 @@ TODO
 ## Distribution and licensing
 
 As we utilize some verbatim code from the [V-JEPA project](https://github.com/facebookresearch/jepa/), we distribute our
-code under the same license: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please
-refer to the [license file](./LICENSE.txt).
+*code* under the same license: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). For more details, please
+refer to the [license file](./LICENSE.txt). For the license of the *model weights*, see the
+[model repository](https://huggingface.co/DigitalSurgeryLab-Basel/ML-CDS-2025).
 
 ## Citing
 
