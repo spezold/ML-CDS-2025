@@ -41,7 +41,49 @@ The weights of *finetuned V-JEPA* and a link to the weights of *pretrained V-JEP
 
 ## Usage
 
-TODO
+### Launching experiments and collecting results
+
+After successful installation and data provision (see above), the results from the HeiCo experiments can be reproduced
+by launching `multimods3.scripts.main` with the corresponding config files from the `configs` folder, for example:
+```shell
+python -m multimods3.scripts.main --fname heico-video-pretrained_vjepa-train.yaml --devices cuda:0
+```
+
+The results of experiments can be found in the corresponding log folders, the path of which can be chosen via the
+config file's settings in `workflow.checkpointing` (model checkpoints) and `workflow.logging` (progress and evaluation
+results). Detailed classification results are logged as confusion matrices in the corresponding `*.confusion` files.
+
+### Config file naming scheme
+
+The naming scheme of the provided config files adheres to the following convention:
+- Names containing `pretrained_vjepa` and `finetuned_vjepa` refer to the use of *pretrained V-JEPA* and
+  *finetuned V-JEPA* weights, respectively, as described in our paper. Please ensure that the config file's
+  `model.encoders.video.pretrain.checkpoint_file` parameter is set appropriately.
+- Names ending in `train` and `eval` refer to a training and evaluation run, respectively.
+- Names containing `video` refer to training and evaluating the downstream task's decoder on video data only
+  (step 2 in our paper's training recipe).
+- Names containing `sensors1` refer to training the sensor stream's encoder
+  (step 3 in our paper's training recipe).
+- Names containing `sensors2` refer to retraining and reevaluating the downstream task's decoder on the combination of
+  video data and sensor streams (step 4 in our paper's training recipe).
+
+### Launch order
+
+The interdependence of steps and scripts implies the following launch order:
+
+- … for training:
+  1. `heico-video-*_vjepa-train.yaml`
+  2. `heico-sensors1-*_vjepa-train.yaml`
+  3. `heico-sensors2-*_vjepa-train.yaml`
+- … for evaluation: An evaluation script (`*-eval.yaml`) can be launched once the training script with the
+  corresponding name (`*-train.yaml`) has been run successfully.
+- … for pretrained vs. finetuned V-JEPA: both series of experiments (`*pretrained*` vs `*finetuned*`) can be run
+  independently.
+
+### Creating own experiments
+
+For creating own experiments, a corresponding config file, the name of which can be chosen freely, must be created in
+the `configs` folder. For the parameters and structure, see the parameters and comments in the existing ones.
 
 ## Distribution and licensing
 
