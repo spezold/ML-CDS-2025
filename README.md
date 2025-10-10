@@ -1,16 +1,18 @@
 # Leveraging generic foundation models for multimodal surgical data analysis
 
-Code repository for the paper **Leveraging generic foundation models for multimodal surgical data analysis** by Simon
-Pezold, Jérôme A. Kurylec, Jan S. Liechti, Beat P. Müller, and Joël L. Lavanchy.
+Code repository for the paper
+[**Leveraging generic foundation models for multimodal surgical data analysis**](https://arxiv.org/abs/2509.06831)
+by Simon Pezold, Jérôme A. Kurylec, Jan S. Liechti, Beat P. Müller, and Joël L. Lavanchy.
 
 The project is named `multimods3`, which is short for *multimodal analysis of surgical sensor streams*. The name is also
-a nod to *modular decision support networks*; in particular, MultiModN, which inspired our work.
+a nod to *modular decision support networks*; in particular, [MultiModN](https://arxiv.org/abs/2309.14118), which
+inspired our work.
 
 ## TODOs
 - [x] Provide code
 - [x] Provide weights
 - [x] Provide installation instructions
-- [ ] Provide usage instructions
+- [x] Provide usage instructions
 
 ## Installation
 
