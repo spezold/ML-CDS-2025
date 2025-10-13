@@ -15,7 +15,7 @@ which inspired our work.
 - If desired, create and activate a new project environment;
 - download the project code;
 - `cd` into the project directory;
-- install the project code with `pip install -e ./` or the dependency manager's corresponding command.
+- install the project code with `pip install -e ./`.
 
 ### Using `conda`
 … or one of its derivatives:
