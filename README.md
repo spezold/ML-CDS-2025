@@ -26,7 +26,7 @@ Installation via `conda` and its derivatives should likewise be possible:
 
 ## Data provision
 
-The HeiCo data can be downloaded from the dataset's [Synapse repository](https://doi.org/10.7303/syn21903917).
+The HeiCo data (third-party) can be downloaded from the dataset's [Synapse repository](https://doi.org/10.7303/syn21903917).
 Keeping the downloaded folder structure, the resulting download directory can then be used as the `base_dir` in a config
 file for a training or evaluation run (see below).
 
