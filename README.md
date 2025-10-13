@@ -10,14 +10,14 @@ which inspired our work.
 
 ## Installation
 
-## Using `pip`
+### Using `pip`
 … or your favorite `pip`-compatible dependency manager:
 - If desired, create and activate a new project environment;
 - download the project code;
 - `cd` into the project directory;
 - install the project code with `pip install -e ./` or the dependency manager's corresponding command.
 
-## Using `conda`
+### Using `conda`
 … or one of its derivatives:
 - Download the project code;
 - `cd` into the project directory;
