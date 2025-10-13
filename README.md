@@ -15,13 +15,13 @@ which inspired our work.
 - If desired, create and activate a new project environment;
 - download the project code;
 - `cd` into the project directory;
-- install the project code with `pip install -e ./`.
+- install dependencies and the project code with `pip install -e ./`.
 
 ### Using `conda`
 … or one of its derivatives:
 - Download the project code;
 - `cd` into the project directory;
-- install the project environment `multimods3` with `conda env create -f environment.yml`;
+- create the project environment `multimods3` and install dependencies with `conda env create -f environment.yml`;
 - activate the project environment with `conda activate multimods3`;
 - install the project code with `pip install -e ./`.
 
