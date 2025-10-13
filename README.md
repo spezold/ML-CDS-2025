@@ -10,18 +10,19 @@ which inspired our work.
 
 ## Installation
 
-Install with `pip` or your favorite dependency manager:
-- Download the project code;
+## Using `pip`
+… or your favorite `pip`-compatible dependency manager:
+- If desired, create and activate a new project environment;
+- download the project code;
 - `cd` into the project directory;
 - install the project code with `pip install -e ./` or the dependency manager's corresponding command.
 
-Installation via `conda` and its derivatives should likewise be possible:
-- Create a new environment (we recommend using Python 3.11 or 3.12) and activate it;
-- manually install `conda` packages corresponding to the `pip` packages listed in [`pyproject.toml`](./pyproject.toml)'s
-  `dependencies` entry (you might want to enable the `conda-forge` channel for this);
-- download the project code;
+## Using `conda`
+… or one of its derivatives:
+- Download the project code;
 - `cd` into the project directory;
-- ensure via `pip install --dry-run -e ./` that all dependencies have indeed been installed by `conda`;
+- install the project environment `multimods3` with `conda env create -f environment.yml`;
+- activate the project environment with `conda activate multimods3`;
 - install the project code with `pip install -e ./`.
 
 ## Data provision
