@@ -100,8 +100,7 @@ If you find our work useful, please consider citing:
 @article{pezold2025leveraging,
     title = {Leveraging Generic Foundation Models for Multimodal Surgical Data Analysis}, 
     author = {Pezold, Simon and Kurylec, Jérôme A. and Liechti, Jan S. and Müller, Beat P. and Lavanchy, Joël L.},
-    journal = {arXiv preprint},
-    year = {2025},
-    doi = {10.48550/arXiv.2509.06831},
+    journal = {arXiv preprint arXiv:2509.06831},
+    year = {2025}
 }
 ```
